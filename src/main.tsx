@@ -2,7 +2,6 @@ import App from './App'
 import { makeServer } from "@/server/server"
 import { createRoot } from 'react-dom/client';
 import '@/styles/index.css'
-import { SidebarProvider } from '@/components/ui/sidebar';
 
 if (process.env.NODE_ENV === "development") {
   makeServer({ environment: "development" })
@@ -10,4 +9,4 @@ if (process.env.NODE_ENV === "development") {
 
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container)
-root.render(<SidebarProvider><App /></SidebarProvider>);
+root.render(<App />);
