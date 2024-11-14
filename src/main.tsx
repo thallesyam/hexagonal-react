@@ -1,7 +1,7 @@
 import App from './App'
 import { makeServer } from "@/server/server"
 import { createRoot } from 'react-dom/client';
-
+import '@/styles/index.css'
 
 if (process.env.NODE_ENV === "development") {
   makeServer({ environment: "development" })
