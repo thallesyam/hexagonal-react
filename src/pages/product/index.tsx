@@ -1,29 +1,12 @@
 import { StackedProductList } from "@/components/stacked-product-list"
-import { useCallback, useEffect, useState } from "react"
 import { Menu } from "@/components/menu";
+import { useProductModel } from "@/models/use-product-model";
+import { ListProductService } from "@/services/list-product";
 
-export type IProduct = {
-  productId: string
-  storeId: string
-  name: string
-  category: string
-  quantity: number
-  price: number
-  isAvailable: boolean
-}
 
 export function ProductPage() {
-  const [products, setProducts] = useState<IProduct[]>([])
-
-  const fetchProducts = useCallback(async () => {
-    const response = await fetch('/api/products')
-    const products = await response.json()
-    setProducts(products)
-  }, [])
-
-  useEffect(() => {
-    fetchProducts()
-  }, [fetchProducts])
+  const listProductService = new ListProductService()
+  const { products } = useProductModel({ listProductService })
 
   return (
     <main className="w-screen h-screen flex items-center justify-center">

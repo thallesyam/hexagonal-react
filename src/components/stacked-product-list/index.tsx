@@ -1,4 +1,4 @@
-import { IProduct } from "@/pages/product";
+import { IProduct } from "@/models/use-product-model"
 
 type IStackedProductList = {
   products: IProduct[]

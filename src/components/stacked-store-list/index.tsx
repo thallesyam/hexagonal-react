@@ -1,4 +1,4 @@
-import { IStore } from "@/pages/store";
+import { IStore } from "@/models/use-store-model"
 
 type IStackedStoreList = {
   stores: IStore[]
