@@ -5,3 +5,27 @@
 body {
   @apply bg-zinc-950 text-zinc-50;
 }
+
+@layer utilities {
+  /* Aplica o estilo de scroll em todos os elementos */
+  *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #1a1a1a;
+
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}

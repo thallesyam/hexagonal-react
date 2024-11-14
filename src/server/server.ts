@@ -1,39 +1,39 @@
-import { belongsTo, createServer, hasMany, Model } from "miragejs"
-import { generateSeeds } from "./seeds"
+import { belongsTo, createServer, hasMany, Model } from "miragejs";
+import { generateSeeds } from "./seeds";
 
-type IServer = {
-  environment: 'development' | 'production' | 'test'
-}
-
-export function makeServer({ environment }: IServer) {
-  let server = createServer({
+export function makeServer({ environment }: { environment: 'development' | 'production' | 'test' }) {
+  return createServer({
     environment,
 
     models: {
       store: Model.extend({
-        product: hasMany()  
+        products: hasMany(),
       }),
       product: Model.extend({
-        store: belongsTo()
-      })
+        store: belongsTo(),
+      }),
     },
 
     seeds(server) {
-      generateSeeds(server)
+      generateSeeds(server);
     },
 
     routes() {
-      this.urlPrefix = 'http://localhost:5173/api'
+      this.urlPrefix = 'http://localhost:5173/api';
 
-      this.get("/stores", (schema) => {
-        return schema.all("store");
+      this.get("/stores", (schema: any) => {
+        return schema.stores.all().models.map((store: any) => ({
+          ...store.attrs,
+          products: store.products.models.map((product: any) => product.attrs),
+        }));
       });
-      
-      this.get("/products", (schema) => {
-        return schema.all("product");
-      });
-    }
-  })
 
-  return server
+      this.get("/products", (schema: any) => {
+        return schema.products.all().models.map((product: any) => ({
+          ...product.attrs,
+          store: product.store.attrs,
+        }));
+      });
+    },
+  });
 }

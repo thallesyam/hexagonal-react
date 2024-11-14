@@ -1,22 +1,22 @@
-import { IProduct } from "@/App";
+import { IProduct } from "@/pages/product";
 
 type IStackedProductList = {
   products: IProduct[]
 }
 
-export default function StackedProductList({ products }: IStackedProductList) {
+export function StackedProductList({ products }: IStackedProductList) {
   return (
-    <ul role="list" className="divide-y divide-gray-300 w-full max-w-[700px] ">
+    <ul role="list" className="divide-y divide-gray-500 w-full max-w-[700px] h-full max-h-[700px] overflow-y-scroll px-5">
       {products?.map((product) => (
         <li key={product.productId} className="flex justify-between gap-x-6 py-5">
           <div className="flex min-w-0 gap-x-4">
             <div className="min-w-0 flex-auto">
-              <p className="text-sm/6 font-semibold text-zinc-500">
+              <p className="text-sm/6 font-semibold text-zinc-400">
                 <span className="text-zinc-400">{product.storeId && `[${product.storeId}] - `}</span>
                 {product.name}
               </p>
               <div className="flex items-center gap-2">
-                {product.category && <p className="mt-1 truncate text-xs/5 text-zinc-600">{product.category}</p>}
+                {product.category && <p className="mt-1 truncate text-xs/5 text-zinc-500">{product.category}</p>}
               </div>
             </div>
           </div>
