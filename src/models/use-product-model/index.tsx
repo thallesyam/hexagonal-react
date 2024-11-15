@@ -1,4 +1,4 @@
-import { ListProductService } from "@/services/list-product"
+import { ListProductService } from "@/services/list-product/list-product-service"
 import { useCallback, useEffect, useState } from "react"
 
 export type IProduct = {

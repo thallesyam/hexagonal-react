@@ -16,6 +16,7 @@
     "vite": "^5.4.11"
   },
   "devDependencies": {
+    "@ngneat/falso": "^7.2.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/react": "^18.0.0",

@@ -1,20 +1,10 @@
-import { StackedProductList } from "@/components/stacked-product-list"
-import { Menu } from "@/components/menu";
 import { useProductModel } from "@/models/use-product-model";
-import { ListProductService } from "@/services/list-product";
+import { ListProductService } from "@/services/list-product/list-product-service";
+import { ProductView } from "@/views/product-view";
 
-
-export function ProductPage() {
+export function ProductViewModel() {
   const listProductService = new ListProductService()
-  const { products } = useProductModel({ listProductService })
-
-  return (
-    <main className="w-screen h-screen flex items-center justify-center">
-      <div className="max-h-[700px] min-w-[700px] flex gap-4 overflow-scrolll">
-        <Menu />
-        <StackedProductList products={products} />
-      </div>
-    </main>
-  )
+  const methods = useProductModel({ listProductService })
+  return  <ProductView methods={methods} />
 }
 
