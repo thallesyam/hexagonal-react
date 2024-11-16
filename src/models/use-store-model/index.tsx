@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { IProduct } from "../use-product-model"
-import { ListStoreService } from "@/services/list-store"
+import { ListStoreService } from "@/services/list-store/list-store-service"
 
 export type IStore = {
   storeId: string

@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import { useStoreModel } from '.'
-import { BuilderStore } from '@/test/builders'
+import { BuilderStore } from '@/test/builders/store-builder'
 import { act } from 'react'
-import { ListStoreServiceMock } from '@/services/list-product/list-product-service-mock'
+import { ListStoreServiceMock } from '@/services/list-store/list-store-service-mock'
 
 describe('useStoreModel', () => {
     let listStoreServiceMock: ListStoreServiceMock

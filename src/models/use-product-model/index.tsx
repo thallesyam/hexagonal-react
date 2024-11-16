@@ -21,7 +21,7 @@ export function useProductModel({ listProductService }: IProductModel) {
   const fetchProducts = useCallback(async () => {
     const products = await listProductService.exec()
     setProducts(products)
-  }, [])
+  }, [listProductService])
 
   useEffect(() => {
     fetchProducts()

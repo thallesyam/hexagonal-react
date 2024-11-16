@@ -1,12 +1,12 @@
-import { IStore } from "@/models/use-store-model"
-import { ListStoreServiceInterface } from "../list-store"
+import { IProduct } from "@/models/use-product-model"
+import { ListProductServiceInterface } from "./list-product-service"
 
-export class ListStoreServiceMock implements ListStoreServiceInterface {
-  stores: IStore[] = []
+export class ListProductServiceMock implements ListProductServiceInterface {
+  products: IProduct[] = []
 
-  async exec(): Promise<IStore[]> {
+  async exec(): Promise<IProduct[]> {
     return new Promise(resolve => {
-      return resolve(this.stores)
+      return resolve(this.products)
     })
   }
 }
