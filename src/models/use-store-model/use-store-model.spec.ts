@@ -3,7 +3,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { useStoreModel } from '.'
 import { BuilderStore } from '@/test/builders/store-builder'
 import { act } from 'react'
-import { ListStoreServiceMock } from '@/services/list-store/list-store-service-mock'
+import { ListStoreServiceErrorMock, ListStoreServiceMock } from '@/services/list-store/list-store-service-mock'
 
 describe('useStoreModel', () => {
     let listStoreServiceMock: ListStoreServiceMock
@@ -21,7 +21,7 @@ describe('useStoreModel', () => {
     const { result } = renderHook(() => useStoreModel({ listStoreService: listStoreServiceMock }))
 
     await waitFor(() => {
-      return act(() => result.current.stores.length !== 0)
+      act(() => result.current.stores.length !== 0)
     })
 
     expect(result.current.stores).toHaveLength(3)
@@ -32,7 +32,18 @@ describe('useStoreModel', () => {
     const { result } = renderHook(() => useStoreModel({ listStoreService: listStoreServiceMock }))
 
     await waitFor(() => {
-      return act(() => result.current.stores.length !== 0)
+      act(() => result.current.stores.length !== 0)
+    })
+
+    expect(result.current.stores).toHaveLength(0)
+  })
+
+  it('should list empty stores when service throw error', async () => {
+    listStoreServiceMock = new ListStoreServiceErrorMock()
+    const { result } = renderHook(() => useStoreModel({ listStoreService: listStoreServiceMock }))
+
+    await waitFor(() => {
+      act(() => result.current.stores.length !== 0)
     })
 
     expect(result.current.stores).toHaveLength(0)

@@ -10,3 +10,13 @@ export class ListProductServiceMock implements ListProductServiceInterface {
     })
   }
 }
+
+export class ListProductServiceErrorMock implements ListProductServiceInterface {
+  products: IProduct[] = []
+
+  async exec(): Promise<IProduct[]> {
+    return new Promise((resolve, reject) => {
+      return reject()
+    })
+  }
+}

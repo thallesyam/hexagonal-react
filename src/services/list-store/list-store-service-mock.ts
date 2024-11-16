@@ -10,3 +10,13 @@ export class ListStoreServiceMock implements ListStoreServiceInterface {
     })
   }
 }
+
+export class ListStoreServiceErrorMock implements ListStoreServiceInterface {
+  stores: IStore[] = []
+
+  async exec(): Promise<IStore[]> {
+    return new Promise((resolve, reject) => {
+      return reject()
+    })
+  }
+}

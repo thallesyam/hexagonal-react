@@ -19,8 +19,12 @@ export function useProductModel({ listProductService }: IProductModel) {
   const [products, setProducts] = useState<IProduct[]>([])
 
   const fetchProducts = useCallback(async () => {
-    const products = await listProductService.exec()
-    setProducts(products)
+    try {
+      const products = await listProductService.exec()
+      setProducts(products)
+    } catch (error) {
+      setProducts([])
+    }
   }, [listProductService])
 
   useEffect(() => {

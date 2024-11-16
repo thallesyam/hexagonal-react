@@ -24,8 +24,12 @@ export function useStoreModel({ listStoreService }: IStoreModel) {
   const [stores, setStores] = useState<IStore[]>([])
 
   const fetchStores = useCallback(async () => {
-    const stores = await listStoreService.exec()
-    setStores(stores)
+    try {
+      const stores = await listStoreService.exec()
+      setStores(stores)
+    } catch (error) {
+      setStores([])
+    }
   }, [listStoreService])
 
   useEffect(() => {
