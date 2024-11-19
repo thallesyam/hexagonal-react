@@ -1,3 +1,4 @@
+import { HttpMethod, IHttpClient } from "@/infra/http/http-contracts";
 import { IStore } from "@/models/use-store-model";
 
 export interface ListStoreServiceInterface {
@@ -5,9 +6,13 @@ export interface ListStoreServiceInterface {
 }
 
 export class ListStoreService implements ListStoreServiceInterface {
+  constructor(private httpClient: IHttpClient){}
 
   async exec(): Promise<IStore[]> {
-    const response = await fetch('/api/stores')
+    const response = await this.httpClient.request({
+      endpoint: '/stores',
+      method: HttpMethod.GET
+    })
     const stores = await response.json()
     return stores
   }

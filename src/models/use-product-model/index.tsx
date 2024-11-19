@@ -1,4 +1,4 @@
-import { ListProductService } from "@/services/list-product/list-product-service"
+import { ListProductServiceInterface } from "@/services/list-product/list-product-service"
 import { useCallback, useEffect, useState } from "react"
 
 export type IProduct = {
@@ -12,7 +12,7 @@ export type IProduct = {
 }
 
 type IProductModel = {
-  listProductService: ListProductService
+  listProductService: ListProductServiceInterface
 }
 
 export function useProductModel({ listProductService }: IProductModel) {

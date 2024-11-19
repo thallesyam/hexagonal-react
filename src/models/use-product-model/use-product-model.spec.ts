@@ -4,12 +4,14 @@ import { useProductModel } from '.'
 import { BuilderProduct } from '@/test/builders/product-builder'
 import { act } from 'react'
 import { ListProductServiceErrorMock, ListProductServiceMock } from '@/services/list-product/list-product-service-mock'
+import { IHttpClient } from '@/infra/http/http-contracts'
 
 describe('useStoreModel', () => {
+    let httpClient: IHttpClient
     let listProductServiceMock: ListProductServiceMock
 
   beforeEach(() => {
-    listProductServiceMock = new ListProductServiceMock()
+    listProductServiceMock = new ListProductServiceMock(httpClient)
   })
   
   it('should list correct stores', async () => {
