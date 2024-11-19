@@ -25,7 +25,7 @@ export function useProductModel({ listProductService }: IProductModel) {
     } catch (error) {
       setProducts([])
     }
-  }, [listProductService])
+  }, [])
 
   useEffect(() => {
     fetchProducts()

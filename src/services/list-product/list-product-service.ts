@@ -10,11 +10,9 @@ export class ListProductService implements ListProductServiceInterface {
 
   async exec(): Promise<IProduct[]> {
     const response = await this.httpClient.request({
-      endpoint: '/product',
+      endpoint: '/products',
       method: HttpMethod.GET,
     })
-    const products = await response.json()
-    console.log(products)
-    return products
+    return response
   }
 }

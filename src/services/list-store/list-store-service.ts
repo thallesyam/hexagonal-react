@@ -13,8 +13,8 @@ export class ListStoreService implements ListStoreServiceInterface {
       endpoint: '/stores',
       method: HttpMethod.GET
     })
-    const stores = await response.json()
-    return stores
+
+    return response
   }
 
 }

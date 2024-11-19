@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { IProduct } from "../use-product-model"
-import { ListStoreService } from "@/services/list-store/list-store-service"
+import { ListStoreService, ListStoreServiceInterface } from "@/services/list-store/list-store-service"
 
 export type IStore = {
   storeId: string
@@ -17,7 +17,7 @@ export type IStore = {
 }
 
 type IStoreModel = {
-  listStoreService: ListStoreService
+  listStoreService: ListStoreServiceInterface
 }
 
 export function useStoreModel({ listStoreService }: IStoreModel) {
@@ -30,7 +30,7 @@ export function useStoreModel({ listStoreService }: IStoreModel) {
     } catch (error) {
       setStores([])
     }
-  }, [listStoreService])
+  }, [])
 
   useEffect(() => {
     fetchStores()

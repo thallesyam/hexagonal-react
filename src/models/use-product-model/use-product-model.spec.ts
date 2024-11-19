@@ -1,25 +1,25 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import { useProductModel } from '.'
 import { BuilderProduct } from '@/test/builders/product-builder'
 import { act } from 'react'
 import { ListProductServiceErrorMock, ListProductServiceMock } from '@/services/list-product/list-product-service-mock'
-import { IHttpClient } from '@/infra/http/http-contracts'
+import { ListProductServiceInterface } from '@/services/list-product/list-product-service'
 
 describe('useStoreModel', () => {
-    let httpClient: IHttpClient
-    let listProductServiceMock: ListProductServiceMock
+    let listProductServiceMock: ListProductServiceInterface
 
   beforeEach(() => {
-    listProductServiceMock = new ListProductServiceMock(httpClient)
+    vi.clearAllMocks()
+    listProductServiceMock = new ListProductServiceMock()
   })
   
   it('should list correct stores', async () => {
-    listProductServiceMock.products = [
+    vi.spyOn(listProductServiceMock, 'exec').mockResolvedValue([
       new BuilderProduct().build(),
       new BuilderProduct().build(),
       new BuilderProduct().build(),
-    ]
+    ])
     const { result } = renderHook(() => useProductModel({ listProductService: listProductServiceMock }))
 
     await waitFor(() => {
@@ -30,7 +30,7 @@ describe('useStoreModel', () => {
   })
 
   it('should list emptya products', async () => {
-    listProductServiceMock.products = []
+    vi.spyOn(listProductServiceMock, 'exec').mockResolvedValue([])
     const { result } = renderHook(() => useProductModel({ listProductService: listProductServiceMock }))
 
     await waitFor(() => {
